@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySpot.Core", "src\MySpot.Core\MySpot.Core.csproj", "{4364B2FA-8C56-421A-A211-A8F4122A405B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySpot.Application", "src\MySpot.Application\MySpot.Application.csproj", "{ABB3DDC6-AE3B-4A0A-A05C-7EAFB20F59E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySpot.Infrastructure", "src\MySpot.Infrastructure\MySpot.Infrastructure.csproj", "{63A946AA-8389-4765-B926-0AD7E2861588}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4364B2FA-8C56-421A-A211-A8F4122A405B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4364B2FA-8C56-421A-A211-A8F4122A405B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4364B2FA-8C56-421A-A211-A8F4122A405B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4364B2FA-8C56-421A-A211-A8F4122A405B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABB3DDC6-AE3B-4A0A-A05C-7EAFB20F59E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABB3DDC6-AE3B-4A0A-A05C-7EAFB20F59E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABB3DDC6-AE3B-4A0A-A05C-7EAFB20F59E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABB3DDC6-AE3B-4A0A-A05C-7EAFB20F59E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63A946AA-8389-4765-B926-0AD7E2861588}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63A946AA-8389-4765-B926-0AD7E2861588}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63A946AA-8389-4765-B926-0AD7E2861588}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63A946AA-8389-4765-B926-0AD7E2861588}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
