@@ -10,7 +10,7 @@ using MySpot.Core.Users.Repositories;
 
 namespace MySpot.Application.Services;
 
-public sealed class WeeklyReservationsService : IWeeklyReservationsService
+internal sealed class WeeklyReservationsService : IWeeklyReservationsService
 {
     private readonly IWeeklyReservationsRepository _weeklyReservationsRepository;
     private readonly IParkingSpotRepository _parkingSpotRepository;

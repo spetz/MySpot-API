@@ -8,7 +8,12 @@ namespace MySpot.Api.Controllers;
 [Route("parking-spots")]
 public class ParkingSpotsController : ControllerBase
 {
-    private static readonly ParkingSpotsService ParkingSpotsService = new();
+    private readonly IParkingSpotsService _parkingSpotsService;
+
+    public ParkingSpotsController(IParkingSpotsService parkingSpotsService)
+    {
+        _parkingSpotsService = parkingSpotsService;
+    }
 
     [HttpGet("{id:guid}")]
     public async Task<ActionResult<ParkingSpotDto>> Get(Guid id)
@@ -19,20 +24,20 @@ public class ParkingSpotsController : ControllerBase
     
     [HttpGet]
     public async Task<ActionResult<IEnumerable<ParkingSpotDto>>> Get()
-        => Ok(await ParkingSpotsService.GetAllAsync());
+        => Ok(await _parkingSpotsService.GetAllAsync());
 
     [HttpPost]
     public async Task<ActionResult> Post(ParkingSpotDto dto)
     {
         dto.Id = Guid.NewGuid();
-        await ParkingSpotsService.AddAsync(dto);
+        await _parkingSpotsService.AddAsync(dto);
         return CreatedAtAction(nameof(Get), new {id = dto.Id}, default);
     }
 
     [HttpDelete("{id:guid}")]
     public async Task<ActionResult> Post(Guid id)
     {
-        await ParkingSpotsService.DeleteAsync(id);
+        await _parkingSpotsService.DeleteAsync(id);
         return NoContent();
     }
 }
