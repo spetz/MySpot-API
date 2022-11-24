@@ -1,0 +1,28 @@
+@url = http://localhost:5000
+
+###
+GET {{url}}/api
+
+###
+GET {{url}}
+
+###
+GET {{url}}/hello?name=john&id=1&page=10&results=100
+
+###
+POST {{url}}/dummy
+Content-Type: application/json
+
+{
+    "id": 1,
+    "name": "John"
+}
+
+###
+PUT {{url}}/dummy/1
+Content-Type: application/json
+
+{
+    "id": 2,
+    "name": "John"
+}
