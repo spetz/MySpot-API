@@ -1,3 +1,4 @@
+using MySpot.Api;
 using MySpot.Application;
 using MySpot.Core;
 using MySpot.Infrastructure;
@@ -9,6 +10,15 @@ builder.Services
     .AddApplicationLayer()
     .AddInfrastructureLayer()
     .AddControllers();
+
+var section = builder.Configuration.GetSection("app");
+
+builder.Services
+    .Configure<AppOptions>(section);
+
+// var appOptions = new AppOptions();
+// section.Bind(appOptions);
+// builder.Services.AddSingleton(appOptions);
 
 var app = builder.Build();
 

@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace MySpot.Api.Controllers;
 
@@ -6,34 +7,13 @@ namespace MySpot.Api.Controllers;
 [ApiController]
 public class HomeController : ControllerBase
 {
+    private readonly IOptions<AppOptions> _appOptions;
+
+    public HomeController(IOptions<AppOptions> appOptions)
+    {
+        _appOptions = appOptions;
+    }
+
     [HttpGet]
-    public ActionResult<string> Get()
-    {
-        return Ok("Hello");
-    }
-    
-    [HttpGet("hello")]
-    public ActionResult<string> GetByName([FromQuery] Dummy dummy)
-    {
-        return Ok($"Hello: {dummy.Name}");
-    }
-
-    [HttpPost("dummy")]
-    public ActionResult Post(Dummy dummy)
-    {
-        return NoContent();
-    }
-
-    [HttpPut("dummy/{id:int}")]
-    public ActionResult Put(int id, Dummy dummy)
-    {
-        dummy.Id = id;
-        return NoContent();
-    }
-    
-    public class Dummy
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-    }
+    public ActionResult<string> Get() => _appOptions.Value.Name;
 }
