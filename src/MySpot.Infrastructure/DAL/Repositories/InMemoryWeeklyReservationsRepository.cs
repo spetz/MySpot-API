@@ -14,10 +14,7 @@ public sealed class InMemoryWeeklyReservationsRepository : IWeeklyReservationsRe
     public Task<WeeklyReservations> GetForCurrentWeekAsync(UserId userId)
     {
         var week = new Week(_clock.Current());
-        var res = WeeklyReservations.SingleOrDefault(x => x.UserId == userId && x.Week == week);
-        var res1 = WeeklyReservations.SingleOrDefault(x => x.UserId == userId);
-        var res2 = WeeklyReservations.SingleOrDefault(x => x.Week == week);
-        return Task.FromResult(res);
+        return Task.FromResult(WeeklyReservations.SingleOrDefault(x => x.UserId == userId && x.Week == week));
     }
 
     public Task<WeeklyReservations> GetForLastWeekAsync(UserId userId)
