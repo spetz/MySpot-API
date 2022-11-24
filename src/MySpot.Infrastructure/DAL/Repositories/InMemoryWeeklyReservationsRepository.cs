@@ -3,6 +3,7 @@ using MySpot.Core.Reservations.Repositories;
 using MySpot.Core.Reservations.Types;
 using MySpot.Core.Reservations.ValueObjects;
 using MySpot.Core.Shared.Time;
+using MySpot.Infrastructure.Time;
 
 namespace MySpot.Infrastructure.DAL.Repositories;
 

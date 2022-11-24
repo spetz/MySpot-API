@@ -1,9 +1,11 @@
 using MySpot.Application;
+using MySpot.Core;
 using MySpot.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
+    .AddCoreLayer()
     .AddApplicationLayer()
     .AddInfrastructureLayer()
     .AddControllers();

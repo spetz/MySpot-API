@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using MySpot.Core.Shared.Time;
 using MySpot.Core.Users.Entities;
+using MySpot.Infrastructure.Time;
 using Xunit;
 
 namespace MySpot.Tests;
@@ -12,10 +13,16 @@ public class ServiceCollectionTests
     {
         var serviceCollection = new ServiceCollection();
         serviceCollection
-            .AddSingleton<Dummy>()
-            .AddScoped<IClock, DateTimeClock>();
+            .AddSingleton<IEnumerable<IDummy>>(new IDummy[]
+            {
+                new Dummy(),
+                new Dummy2(),
+                new Dummy3()
+            });
 
         var serviceProvider = serviceCollection.BuildServiceProvider();
+
+        var dummy = serviceProvider.GetService<IEnumerable<IDummy>>();
         
         // HTTP REQUEST 1
         using (var scope = serviceProvider.CreateScope())
@@ -33,18 +40,24 @@ public class ServiceCollectionTests
             Assert.Same(dummy1, dummy2);
         }
     }
-    
-    
 
-    class Dummy
+    interface IDummy
     {
-        private readonly IClock _clock;
+        Guid Id { get; }
+    }
 
-        public Dummy(IClock clock)
-        {
-            _clock = clock;
-        }
-        
+    class Dummy : IDummy
+    {
+        public Guid Id { get; } = Guid.NewGuid();
+    }
+    
+    class Dummy2 : IDummy
+    {
+        public Guid Id { get; } = Guid.NewGuid();
+    }
+    
+    class Dummy3 : IDummy
+    {
         public Guid Id { get; } = Guid.NewGuid();
     }
 }
