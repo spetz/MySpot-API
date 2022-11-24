@@ -7,22 +7,19 @@ GET {{url}}/api
 GET {{url}}
 
 ###
-GET {{url}}/hello?name=john&id=1&page=10&results=100
+GET {{url}}/parking-spots
 
 ###
-POST {{url}}/dummy
+POST {{url}}/parking-spots
 Content-Type: application/json
 
 {
-    "id": 1,
-    "name": "John"
+    "name": "P1",
+    "displayOrder": 1
 }
 
 ###
-PUT {{url}}/dummy/1
-Content-Type: application/json
+@parkingSpotId = 744ee04b-c816-43c8-99e9-6460e5b8ca0d
 
-{
-    "id": 2,
-    "name": "John"
-}
+###
+DELETE {{url}}/parking-spots/{{parkingSpotId}}

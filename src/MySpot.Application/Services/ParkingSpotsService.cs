@@ -4,7 +4,7 @@ using MySpot.Core.ParkingSpots.Entities;
 
 namespace MySpot.Application.Services;
 
-internal sealed class ParkingSpotsService : IParkingSpotsService
+public sealed class ParkingSpotsService : IParkingSpotsService
 {
     private readonly List<ParkingSpot> _parkingSpots = new();
 
