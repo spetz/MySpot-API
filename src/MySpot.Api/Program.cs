@@ -20,7 +20,7 @@ builder.Host.UseSerilog((_, logger) =>
 builder.Services
     .AddCoreLayer()
     .AddApplicationLayer()
-    .AddInfrastructureLayer()
+    .AddInfrastructureLayer(builder.Configuration)
     .AddDiagnosticsMiddleware()
     .AddErrorHandlerMiddleware()
     .AddControllers();
