@@ -1,7 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-using MySpot.Core.Shared.Time;
-using MySpot.Core.Users.Entities;
-using MySpot.Infrastructure.Time;
 using Xunit;
 
 namespace MySpot.Tests;

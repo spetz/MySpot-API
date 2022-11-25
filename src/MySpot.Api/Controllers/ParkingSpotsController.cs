@@ -35,7 +35,7 @@ public class ParkingSpotsController : ControllerBase
     }
 
     [HttpDelete("{id:guid}")]
-    public async Task<ActionResult> Post(Guid id)
+    public async Task<ActionResult> Delete(Guid id)
     {
         await _parkingSpotsService.DeleteAsync(id);
         return NoContent();

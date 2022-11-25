@@ -1,7 +1,6 @@
 using MySpot.Application.DTO;
 using MySpot.Application.Exceptions;
 using MySpot.Core.ParkingSpots.Entities;
-using MySpot.Core.Shared.Time;
 
 namespace MySpot.Application.Services;
 

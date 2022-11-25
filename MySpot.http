@@ -19,6 +19,15 @@ Content-Type: application/json
 }
 
 ###
+POST {{url}}/api/parking-spots
+Content-Type: application/json
+
+{
+    "name": "P1",
+    "displayOrder": 1
+}
+
+###
 @parkingSpotId = 744ee04b-c816-43c8-99e9-6460e5b8ca0d
 
 ###
