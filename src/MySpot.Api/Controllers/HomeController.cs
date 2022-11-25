@@ -15,5 +15,5 @@ public class HomeController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<string> Get() => _appOptions.Value.Name;
+    public ActionResult<string> Get() => throw new InvalidOperationException("oops");
 }

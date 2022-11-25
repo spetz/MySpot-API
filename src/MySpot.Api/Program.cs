@@ -1,12 +1,11 @@
-using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Options;
 using MySpot.Api;
 using MySpot.Api.Endpoints;
 using MySpot.Application;
-using MySpot.Application.DTO;
 using MySpot.Core;
 using MySpot.Infrastructure;
 using MySpot.Infrastructure.Diagnostics;
+using MySpot.Infrastructure.Exceptions;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +22,7 @@ builder.Services
     .AddApplicationLayer()
     .AddInfrastructureLayer()
     .AddDiagnosticsMiddleware()
+    .AddErrorHandlerMiddleware()
     .AddControllers();
 
 var section = builder.Configuration.GetSection("app");
@@ -37,6 +37,7 @@ builder.Services
 var app = builder.Build();
 
 app.UseDiagnosticsMiddleware();
+app.UseErrorHandlerMiddleware();
 
 app.MapGet("/api", (IOptions<AppOptions> appOptions) => appOptions.Value.Name);
 app.MapParkingSpotsApi();
