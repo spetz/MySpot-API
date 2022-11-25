@@ -1,9 +1,20 @@
+using Microsoft.Extensions.Options;
 using MySpot.Api;
 using MySpot.Application;
+using MySpot.Application.DTO;
 using MySpot.Core;
 using MySpot.Infrastructure;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog((_, logger) =>
+{
+    logger
+        .WriteTo.Console();
+    // .WriteTo.File("logs/log.txt")
+    // .WriteTo.Seq("http://localhost:5341");
+});
 
 builder.Services
     .AddCoreLayer()
@@ -22,7 +33,7 @@ builder.Services
 
 var app = builder.Build();
 
-app.MapGet("/api", () => "Hello World!");
+app.MapGet("/api", (IOptions<AppOptions> appOptions) => appOptions.Value.Name);
 
 app.MapControllers();
 

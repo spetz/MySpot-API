@@ -15,7 +15,7 @@ public class User
     {
     }
 
-    public User(UserId id, Email email, Username username, Password password, FullName fullName, string role = "user",
+    public User(UserId id, Email email, Password password, FullName fullName, string role = "user",
         string jobTitle = "employee")
     {
         Id = id;
