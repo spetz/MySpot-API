@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MySpot.Core.ParkingSpots.Repositories;
+using MySpot.Infrastructure.DAL.Repositories;
 
 namespace MySpot.Infrastructure.DAL;
 
@@ -14,6 +16,7 @@ internal static class Extensions
         var options = new PostgresOptions();
         section.Bind(options);
         services.AddDbContext<MySpotDbContext>(x => x.UseNpgsql(options.ConnectionString));
+        services.AddScoped<IParkingSpotRepository, PostgresParkingSpotRepository>();
         
         return services;
     }

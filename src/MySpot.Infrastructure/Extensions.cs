@@ -15,7 +15,6 @@ public static class Extensions
     public static IServiceCollection AddInfrastructureLayer(this IServiceCollection services,
         IConfiguration configuration)
         => services
-            .AddScoped<IParkingSpotRepository, InMemoryParkingSpotRepository>()
             .AddScoped<IUserRepository, InMemoryUserRepository>()
             .AddScoped<IWeeklyReservationsRepository, InMemoryWeeklyReservationsRepository>()
             .AddSingleton<IClock, DateTimeClock>()

@@ -1,18 +1,23 @@
 using MySpot.Application.DTO;
 using MySpot.Application.Exceptions;
 using MySpot.Core.ParkingSpots.Entities;
+using MySpot.Core.ParkingSpots.Repositories;
 
 namespace MySpot.Application.Services;
 
 internal sealed class ParkingSpotsService : IParkingSpotsService
 {
-    // Not thread-safe
-    private static readonly List<ParkingSpot> ParkingSpots = new();
+    private readonly IParkingSpotRepository _parkingSpotRepository;
+
+    public ParkingSpotsService(IParkingSpotRepository parkingSpotRepository)
+    {
+        _parkingSpotRepository = parkingSpotRepository;
+    }
     
     public async Task<IEnumerable<ParkingSpotDto>> GetAllAsync()
     {
-        await Task.CompletedTask;
-        return ParkingSpots.OrderBy(x => x.DisplayOrder).Select(x => new ParkingSpotDto
+        var parkingSpots = await _parkingSpotRepository.GetAllAsync();
+        return parkingSpots.OrderBy(x => x.DisplayOrder).Select(x => new ParkingSpotDto
         {
             Id = x.Id,
             Name = x.Name,
@@ -22,19 +27,18 @@ internal sealed class ParkingSpotsService : IParkingSpotsService
 
     public async Task AddAsync(ParkingSpotDto parkingSpot)
     {
-        ParkingSpots.Add(new ParkingSpot(parkingSpot.Id, parkingSpot.Name, parkingSpot.DisplayOrder));
-        await Task.CompletedTask;
+        await _parkingSpotRepository.AddAsync(new ParkingSpot(parkingSpot.Id,
+            parkingSpot.Name, parkingSpot.DisplayOrder));
     }
 
     public async Task DeleteAsync(Guid parkingSpotId)
     {
-        var parkingSpot = ParkingSpots.SingleOrDefault(x => x.Id == parkingSpotId);
+        var parkingSpot = await _parkingSpotRepository.GetAsync(parkingSpotId);
         if (parkingSpot is null)
         {
             throw new ParkingSpotNotFoundException(parkingSpotId);
         }
 
-        ParkingSpots.Remove(parkingSpot);
-        await Task.CompletedTask;
+        await _parkingSpotRepository.DeleteAsync(parkingSpot);
     }
 }
